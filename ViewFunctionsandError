@@ -1,0 +1,38 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract ShoesInventory {
+    address public owner;
+    uint256 public totalshoes = 300; // initial shoes in invetory
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function restock(uint256 _quantity) public payable {
+        require(_quantity > 50, "restock should be greater than 50");
+        totalshoes += _quantity;
+    }
+
+    function soldShoe(uint256 _quantity) public {
+        require(_quantity > 20, "sold quantity should be greater than 20");
+        require(_quantity <= totalshoes, "Not enough apples in inventory");
+
+        totalshoes -= _quantity;
+    }
+
+    function TotalShoeInBasket (uint256 newTotal) public {
+        require(msg.sender == owner, "Only the contract owner can update the total shoe");
+        totalshoes = newTotal;
+    }
+
+    // View function to get the total number of shoe
+    function getTotalShoe() public view returns (uint256) {
+        return totalshoes;
+    }
+
+    // View function to get the owner of the contract
+    function getOwner() public view returns (address) {
+        return owner;
+    }
+}
