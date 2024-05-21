@@ -25,5 +25,5 @@ MyNewTotalShoes:
     A view function that returns the total number of shoes currently in the store without modifying the state of the contract.
     Provides transparency into the current inventory count.
 
-    # Owner
+# Owner
 Meta Kaye Agtaguem
